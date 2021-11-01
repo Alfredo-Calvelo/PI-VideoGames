@@ -11,11 +11,11 @@ router.get('',function(req,res,next){
         method:'GET',
         url: `https://api.rawg.io/api/games?key=${YOUR_API_KEY}`
     }).then(respuesta => {
-        res.send(respuesta.data)
+        res.send(respuesta.data.results)
         
         let {id,slug,name, background_image} =  respuesta.data.results[0]
         // destructuring para traer solo la info que me interesa
-        console.log({id,slug,name,background_image});
+        console.log(req.query);
     })
 })
 

@@ -1,6 +1,7 @@
 import React from "react";
-import './NavBar.css'
-import Form from "./Form";
+import styles from'./NavBar.module.css'
+import { Link } from 'react-router-dom';
+import Logo from '../../Images/Logo.png'
 
 class NavBar extends React.Component{
     constructor(props){
@@ -12,22 +13,28 @@ class NavBar extends React.Component{
 
     render(){
         return(
-            <div className = 'NavBar'>
-                <button>
-                    Inicio
-                </button>
-                <button>
-                    About Us
-                </button>
-                <button>
-                    
-                </button>
-                <button>
-                    Inicio
-                </button>
+                <div className = {styles.NavBar}>
+                    <div className = {styles.Botones}>
+                            <Link className={styles.Boton} to = ''>
+                                Search Game
+                            </Link>
+                            <Link className={styles.Boton} to = ''>
+                                Add Game
+                            </Link>
+                            <Link className={styles.Boton} to = ''>
+                                Games List
+                            </Link>
+                            <Link className={styles.Boton} to = ''>
+                                About Us
+                            </Link>
 
-                <Form/>
-            </div>
+
+                    </div>
+                    <div className = {styles.Buscador}>
+                        <img src={Logo} className={styles.Logo} />
+                    </div>
+
+                </div>
         )
     }
 }

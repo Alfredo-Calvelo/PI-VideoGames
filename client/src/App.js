@@ -15,15 +15,13 @@ class App extends React.Component {
   render(){
     return (
       <BrowserRouter>
-        <Route path='/' exact>
+        <Route path='/' exact >
           <Home/>
         </Route>
-        <Route path = '/home'> 
-          <NavBar/>
+        <Route path = '/home' > 
+          <NavBar/> 
         </Route>
-        <Route path = '/principal'>
-          
-        </Route>
+
       </BrowserRouter>
     );
 }

@@ -1,9 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+}
 :root{
   --principal-color:#F0AE4F;
   --background-color: #29170B;
   background-color: var(--background-color);
 }
-*{
-  margin: 0;
-  padding: 0;
+body{
+  height: 100%;
 }

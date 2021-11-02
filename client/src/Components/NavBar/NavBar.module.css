@@ -9,12 +9,12 @@
     height: auto;
     box-shadow: 0px 5px 20px var(--principal-color);
     display: grid;
-    grid-template-columns: 35% auto ;
+    grid-template-columns: 20% 60% 20% ;
 }  
 .Botones{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-
+    gap: 5px;
 }
 
 .Buscador{

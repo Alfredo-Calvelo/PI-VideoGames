@@ -3,6 +3,7 @@ import {Route, BrowserRouter} from 'react-router-dom'
 import './App.css'
 import Home from './Components/Home/Home';
 import NavBar from './Components/NavBar/NavBar';
+import GameList from './Components/GameList/Gamelist';
 class App extends React.Component {
 
   constructor(props){
@@ -21,7 +22,9 @@ class App extends React.Component {
         <Route path = '/home' > 
           <NavBar/> 
         </Route>
-
+        <Route path = '/home/GamesList'>
+          <GameList/>
+        </Route>
       </BrowserRouter>
     );
 }

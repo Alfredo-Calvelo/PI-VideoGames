@@ -14,6 +14,7 @@ class NavBar extends React.Component{
     render(){
         return(
                 <div className = {styles.NavBar}>
+                    <div></div>
                     <div className = {styles.Botones}>
                             <Link className={styles.Boton} to = ''>
                                 Search Game
@@ -21,7 +22,7 @@ class NavBar extends React.Component{
                             <Link className={styles.Boton} to = ''>
                                 Add Game
                             </Link>
-                            <Link className={styles.Boton} to = ''>
+                            <Link className={styles.Boton} to = '/home/GamesList'>
                                 Games List
                             </Link>
                             <Link className={styles.Boton} to = ''>

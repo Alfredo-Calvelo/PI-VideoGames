@@ -2,9 +2,9 @@
   display: grid;
   grid-template-columns: 1;
   row-gap: 50px;
-  
-  height: 100%;
-  margin: auto;
+  height: 100vh;
+  margin: 20%;
+  margin-top: 5%;
   transition: 2s;
 }
 

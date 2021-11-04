@@ -1,83 +1,60 @@
-
 .Card{
-  background-color: white;
-  width: 100%;
-  transition: 2s;
-  display: flex;
-  flex-wrap: wrap;
-  height: max-content;
-  border-radius: 20px;
-  overflow: hidden;
+  background-color: #1E344B;
+  width:100%;
 
-}
-.Arriba{
-  display: flex;
-}
-.Izquierda{
-  width: 50%;
-}
-.Nombre{
-  font-size:30pt;
+  opacity: 85%;
   
 }
-.Derecha{
-  display: grid;
-  justify-content: center;
-  grid-template-rows: auto auto;
-  align-content: flex-start;
-}
-.Imagen{
+.Stars{
+  width: 100%;
+  color: orange;
+  font-size: 30pt;
   display: flex;
   justify-content: center;
-  margin: 10px;
-  height: 50%;
-  width: 50%;
+  gap:20px;
+  filter: drop-shadow(3px 6px 3px  );
+}
+
+.Imagen{
+  width: auto;
 }
 .img{
-  height:fit-content ;
   width: 100%;
+  height: auto;
   border-radius: 20px;
-  margin: 10px;
+  box-sizing:border-box ;
+  
 }
-.Stars{
-  color: orange;
-  font-size: 40px;
-  filter: drop-shadow( 0 0 10px orange);
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  height: fit-content;
-}
-.Stars svg{
-  margin: auto;
-}
-
-.Abajo{
+.RightUp{
+  box-sizing: border-box;
+  width: 50%;
+  padding: 10px;
   display: grid;
-  grid-template-columns: 50% 50%;
-
+  justify-items: center;
+  gap: 20px;
 }
-.Genres{
-  font-size: 20px;
-
+.Arriba{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
 }
-.Platforms{
-  font-size: 20px;
+.Nombre{
+  width: 50%;
+  font-size: 30pt;
+  padding: 20px;
+  box-sizing: border-box;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align:center;
 }
 
-/* .Card:hover {
-  animation: aparecer 1s  ;
-  height: max-content;
-
-}
-@keyframes aparecer{
-  0%{
-    height:30%;
+@media  (max-width: 769px ){
+  .Nombre{
+    width: 100%;
   }
-  100%{
-    opacity: 100%;
-    height:max-content;
+  .RightUp{
+    width: 100%;
   }
-} */
-
+}

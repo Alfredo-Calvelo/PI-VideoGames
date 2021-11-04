@@ -20,44 +20,33 @@ function Card (props) {
     }
     setStars(arrReturn)
   })
-  console.log(props);
+
   return(
     <div className = {styles.Card} >
-      <div className ={styles.Arriba}>
-        <div className = {styles.Izquierda}>
-          <div className={styles.Nombre}>
-            {props.res.name}
-          </div>
+      <div className = {styles.Arriba}>
+        <div className = {styles.Nombre}>
+          {props.res.name}
         </div>
-        <div className = {styles.Derecha}>
-          <div className = {styles.Imagen}>
-            <img className={styles.img} src = {props.res.background_image}/>
-          </div>
+        <div className = {styles.RightUp}>
+          <img className = {styles.img} src = {props.res.background_image}/>
           <div className = {styles.Stars}>
             {stars}
           </div>
+
         </div>
       </div>
-      <div className= {styles.Abajo}>
-          <div className ={styles.Genres}>
-            <div>
-              Genres:
-            </div>
-            <div>
-              {props.res.genres.map((e)=>{
-                return <div>{e}</div>
-              })}
-            </div>
-          </div>
-          <div className = {styles.Platforms}>
-            {props.res.platforms.map((e)=>{
-            return <div>{e}</div>
-            })}
-          </div>
+      <div className = {styles.Medio}>
+        <div>
+          {props.res.genres.map((e)=>{ return <div>{e}</div>})}
+        </div>
+        <div>
+          {props.res.platforms.map((e)=>{return <div>{e}</div>})}
+        </div>
+
       </div>
-          <div className = {styles.Released}>
-            {props.res.released}
-          </div>
+        <div>
+          {props.res.released}
+        </div>
     </div>
   )
 }

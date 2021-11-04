@@ -1,11 +1,13 @@
 .Container{
+  margin: auto;
   display: grid;
   grid-template-columns: 1;
   row-gap: 50px;
-  height: 100vh;
-  margin: 20%;
+  height: 100%;
   margin-top: 5%;
   transition: 2s;
+  justify-items: center;
+  width: 80%;
 }
 
 .Loader{

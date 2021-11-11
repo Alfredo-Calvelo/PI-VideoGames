@@ -5,8 +5,10 @@
 :root{
   --principal-color:#F0AE4F;
   --background-color: #29170B;
-  background-color: var(--background-color);
 }
 body{
-  height: 100%;
+  height: 100vh;
+  background-position: 0 60px;
+  background-image: url(./Images/pacman\ wallpaper.png);
+  background-size:cover ;
 }

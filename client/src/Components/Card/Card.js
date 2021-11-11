@@ -1,28 +1,14 @@
 import React, { useEffect, useState } from "react";
 import styles from './Card.module.css'
-import { FaStar, FaStarHalf } from "react-icons/fa";
 
 function Card (props) {
   // const [stars, setStars]=useState('pendig')
-  const [stars,setStars] = useState()
-
-  useEffect(()=>{
-    let rating = props.res.rating
-    let rest = rating-parseInt(rating)
-    let arrReturn =[]
-    for (let i = 0; i < parseInt(rating); i++) {
-      arrReturn.push(<FaStar/>)
-    }
-    if(rest>0.75){
-      arrReturn.push(<FaStar/>)
-    }else if(rest>0.25 && rest<=0.75){
-      arrReturn.push(<FaStarHalf/>)
-    }
-    setStars(arrReturn)
-  })
+  // const [stars,setStars] = useState()
+console.log(props);
 
   return(
     <div className = {styles.Card} >
+      <div className={styles.ID}>{props.res.DB?`From DB: #${props.res.id}`:`ID: #${props.res.id}`}</div>
       <div className = {styles.Arriba}>
         <div className = {styles.Nombre}>
           {props.res.name}
@@ -30,23 +16,28 @@ function Card (props) {
         <div className = {styles.RightUp}>
           <img className = {styles.img} src = {props.res.background_image}/>
           <div className = {styles.Stars}>
-            {stars}
+            Rating: {props.res.rating}
           </div>
-
         </div>
       </div>
       <div className = {styles.Medio}>
-        <div>
-          {props.res.genres.map((e)=>{ return <div>{e}</div>})}
-        </div>
-        <div>
-          {props.res.platforms.map((e)=>{return <div>{e}</div>})}
-        </div>
 
-      </div>
-        <div>
-          {props.res.released}
+        <div className = {styles.Genres}>
+            {props.res.genres.map((e)=>{ return <div key={e.id}>{e.name}</div>})}
         </div>
+        <div className = {styles.Platforms}>
+            {props.res.DB? props.res.platforms.map(elem=><div key={props.res.platforms.indexOf(elem)}>{elem}</div>)
+            :
+            props.res.platforms.map((elem)=>{return <div key={elem.id}>{elem.name}</div>})}
+            
+        </div>
+            {props.res.DB?<div className={styles.description}>{props.res.description}</div>:null}
+      </div>
+
+      <div className = {styles.Released}>
+        Released: {props.res.released}
+      </div>
+
     </div>
   )
 }

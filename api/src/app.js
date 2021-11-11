@@ -3,6 +3,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const {Genres} = require('./db.js')
+const { default:axios } = require('axios');
+
+
 
 require('./db.js');
 
@@ -23,6 +27,26 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+
+async function sincronizar(){
+  console.log('Sinconizando la base de daton con los Generos de la Api');
+  let res = await axios('https://api.rawg.io/api/genres?key=be2a4ee973c546c892ce706111abeab0')
+  try {
+    res.data.results.map(async(elem)=>{
+      let genero =await Genres.create({
+        id:elem.id,
+        name:elem.name
+      })
+    })
+    
+  } catch (error) {
+    console.log(error);
+  }
+  console.log('Sincronizacion Terminada');
+  
+
+}
+sincronizar()
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

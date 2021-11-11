@@ -23,10 +23,10 @@ class Home extends React.Component{
                             Hello!
                         </p>
                         <p className = {styles.Texto}>
-                            Welcome to the best Video Games Search Web Site
+                            Welcome to the Best Video Games Search Web Site
                         </p>
                     </p>
-                    <Link className={styles.Entry} to = '/home'>
+                    <Link className={styles.Entry} to = 'home/GamesList'>
                         Home
                     </Link>
                         <img className={styles.Logo} src={Logo}/>

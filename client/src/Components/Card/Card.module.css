@@ -1,18 +1,23 @@
-.Card{
-  background-color: #1E344B;
-  width:100%;
 
-  opacity: 85%;
+.Card{
+  background-color: var(--background-color);
+  width:100%;
+  opacity: 100%;
+  border-radius: 20px;
+  padding: 10px;
+  padding-bottom: 0;
+  transition: 1s;
+  filter: drop-shadow(0 0 20px white);
   
 }
 .Stars{
   width: 100%;
-  color: orange;
+  color: var(--principal-color);
   font-size: 30pt;
   display: flex;
   justify-content: center;
   gap:20px;
-  filter: drop-shadow(3px 6px 3px  );
+  filter: drop-shadow(0px 0px 3px white);
 }
 
 .Imagen{
@@ -37,24 +42,113 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
   
 }
 .Nombre{
   width: 50%;
-  font-size: 30pt;
+  font-size: 40pt;
   padding: 20px;
   box-sizing: border-box;
   display: grid;
   justify-content: center;
   align-items: center;
   text-align:center;
+  color:white;
+  font-weight: 750;
 }
 
-@media  (max-width: 769px ){
+.Genres, .Platforms, .description{
+
+  box-sizing:border-box;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: fit-content;
+  font-weight: 500;
+  
+}
+.Platforms, .description{
+  display: none;
+  animation: aparecer 1s;
+}
+.Genres div, .Platforms div, .description {
+  background-color: var(--principal-color);
+  border-radius: 15px;
+  padding: 10px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 15pt;
+  margin: 20px;
+  display: inline-block;
+
+}
+.description{
+  display: none;
+}
+
+.Titles{
+  height: fit-content;
+  width: fit-content;
+  background-color: black;
+  color:white;
+  font-size: 40px;
+}
+.Medio{
+  margin-top: 20px;
+  padding: 10px;
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: 100%;
+  width: 100%;
+
+
+}
+.ID{
+  font-size: 40px;
+  text-align: center;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+}
+.Released{
+  font-size: 40px;
+  text-align: center;
+  font-weight: 700;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  display: none;
+  animation: aparecer 1s;
+}
+@media  (max-width: 900px ){
   .Nombre{
     width: 100%;
+    font-size: 40pt;
   }
   .RightUp{
     width: 100%;
   }
+}
+
+@keyframes aparecer{
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
+
+.Card:hover .Released{
+  display: block;
+}
+.Card:hover .Platforms{
+  display: flex;
+}
+.Card:hover .description{
+  display: flex;
+  justify-self: center;
 }

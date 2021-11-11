@@ -10,19 +10,23 @@
     box-shadow: 0px 5px 20px var(--principal-color);
     display: grid;
     grid-template-columns: 20% 60% 20% ;
+    justify-content: end;
+    
 }  
 .Botones{
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: auto auto auto  ;
     gap: 5px;
+   
 }
 
-.Buscador{
+
+.Logo{
     display: grid;
     grid-template-columns: 100%;
-    
+    justify-self: end;
 }
-.Boton{
+.Boton ,.Search{
     text-decoration: none;
     color: var(--background-color);
     border: none;
@@ -31,11 +35,90 @@
     justify-content: center;
     height: 50px;
     transition: 0.15S;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 20px;
 }
-.Boton:hover{
+.Boton:hover,.Menu:hover,.Search:hover{
     background-color: #E6A445;
+
 }
 
-.Logo{
-    justify-self: end;
+
+.Menu{
+    display: grid;
+    grid-template-columns: 100%;
+    height: 50px;
+    cursor: pointer;
+
+}
+.Menu ul{
+    top: 50px;
+    color: wheat;
+    width:100%;
+    z-index: 10;
+    overflow:hidden;
+	height:0%;
+    justify-content: center;
+    
+}
+.Menu ul li{
+    box-shadow: 0px 5px 20px var(--principal-color);
+    color: white;
+    list-style: none;
+    background-color: var(--principal-color);
+    font-size: 20px;
+    
+}
+.Menu:hover ul {
+    overflow:visible;
+    display: block;
+    height: 50px;
+    -webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+    background-color: black;
+    
+    
+}
+.Menu:hover ul div{
+    background-color: var(--principal-color);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.Menu ul li:hover{
+    background-color: #E9A748;
+    cursor: pointer;
+}
+
+.Form{
+    display: grid;
+    grid-template-columns: 80% auto;
+
+    overflow: hidden;
+}
+.Search{
+    background-color: var(--principal-color);
+    font-size: 15px;
+}
+.SearchBar{
+    background-color: var(--principal-color);
+    border: none;
+    margin: 10px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 5px;
+    max-height:50px ;
 }

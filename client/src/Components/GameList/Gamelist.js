@@ -1,72 +1,254 @@
 import React, { useEffect, useState } from "react";
 import styles from './GameList.module.css'
 import Card from "../Card/Card";
-const { default:axios } = require('axios')
+import { Redirect } from "react-router";
+import axios from "axios";
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
+import * as actionsCreators from '../../actions/actions.js'
+import Falla from "../../Falla/Falla";
 
 
-function GameList() {
-
+function GameList({filter, actualGenre, busqueda, rating}) {
   const[res,setRes]=useState('pending')
-  const [page, setPage] = useState(1)
-  const [index, setIndex] = useState([0,14])
+  const [page, setPage] = useState(0)
+  const [index, setIndex] = useState([0 + 15*page,14 +15*page ])
+  const[arrDB, setArrDB] = useState([])
+  const[arrApi, setArrApi]=useState([])
 
-  useEffect(async()=>{
-    if(res === 'pending'){
-      let res = await axios('http://localhost:3001/buscar')
-      setRes(res.data)
-    }
-  })
+
+  useEffect(()=>{
+      axios('http://localhost:3001/todos').then((res)=> {
+        setRes(res.data)
+        setArrApi( res.data.filter(elem=>elem.DB === false))
+        setArrDB( res.data.filter(elem=>elem.DB===true))
+      }).catch(err=> console.log(err))
+  },[])
+
+  
+  
   function onClickUp(){
-    let length = res.length-1
-    if(index[1]=== 104){
+
+    if(res.length/15 > page && res.length/15 <page+1){
+
     }else{
-      setPage(page+1)
       setIndex([index[0]+15,index[1]+15])
+      setPage(page+1)
+      window.scrollTo(0,0)
+
     }
   }
   function onClickDown(){
-    
-    if(index[0]=== 0){
-    }else{
+    if(page>0){
+      setIndex([index[0]-15,index[1]-15])    
       setPage(page-1)
-      setIndex([index[0]-15,index[1]-15])
+      window.scrollTo(0,0)
+    }
+  }
+  function filteredGames(arr){
+    return arr.slice(index[0],index[1]+1)
+  }
+  function searchFilter(arr) {
+    let arrReturn=[]
+    arr.map(elem=>{
+      if(elem.name.toLowerCase().includes(busqueda.toLowerCase())){
+        arrReturn.push(elem)
+      }
+    })
+    return arrReturn
+  }
 
-    } 
+  function genreFilter(arr){
+    let arrReturn=[]
+
+    arr.map(elem=>{
+      elem.genres.map(genre=>{
+        if (actualGenre.includes(genre.name)) {
+          // console.log(genre);
+          if(arrReturn.includes(elem)){
+
+          }else{
+            arrReturn.push(elem)
+
+          }
+          
+        }
+      })
+    })
+    // console.log(arrReturn);
+    return arrReturn
 
   }
 
+  function ratingOrder(arr) {
+    return arr.sort(compare)
+    
+
+  }
+  function compare(a,b) {
+    if (a.rating> b.rating){
+      return -1
+    }
+    if (a.rating<b.rating) {
+      return 1
+    }
+    return 0
+    
+  }
+
+
+  
   return(
-  <div className = {styles.Container}>
-      {res === 'pending'? <div className = {styles.Loader}></div>:  
+    <>
+    <div className = {styles.Container}>
+      {res === 'pending'? <div className={styles.Loader}></div>:  
           <>
-          {res.map((elem)=>{
-            if(res.indexOf(elem) >= index[0] && res.indexOf(elem)<= index[1]){
-              return <Card res = {elem}/>
-            }else{return null}
-          })}
-          <span> {page} </span>
-          <button onClick = {()=>{
-            onClickUp()
-            window.scrollTo(0,0)
+          {typeof(res)=== 'string'? <Redirect to='/ErrorPage' /> :
+
+
+          filter==='Api & DB' && actualGenre.length===0?
+
+
+          busqueda.length >0?
+          rating=== true?
+          searchFilter(ratingOrder(filteredGames(res))).map(elem=>{
+            return <Card res = {elem} key= {elem.id}/> 
+          })
+          :
+          ratingOrder(filteredGames(res)).map((elem)=>{
+            return <Card res = {elem} key= {elem.id}/> 
           }
-            }>siguiente</button>
-          <button onClick = {()=>{
-            window.scrollTo(0,0)
-            onClickDown()
-            }}>anterior</button>
+          ):
+          
+          
+          filter==='Api & DB' && actualGenre.length>0?
+
+          busqueda.length>0?
+          searchFilter(filteredGames(genreFilter(res))).map(elem=>{
+            return <Card res = {elem} key= {elem.id}/>                   
+          })
+          
+          :
+          filteredGames(genreFilter(res)).map(elem=>{
+                return <Card res = {elem} key= {elem.id}/>                   
+              })
+
+
+
+
+              :filter === 'Api' && actualGenre.length===0? 
+              busqueda.length >0?
+              searchFilter(filteredGames(arrApi)).map(elem=>{
+                return <Card res = {elem} key= {elem.id}/> 
+              })
+              :
+              filteredGames(arrApi).map((elem)=>{
+                return <Card res = {elem} key= {elem.id}/> 
+              }
+              )
+              
+              
+              
+              :
+              
+              filter === 'Api' && actualGenre.length>0?
+              busqueda.length >0?
+              searchFilter(filteredGames(genreFilter(arrApi))).map(elem=>{
+                
+                return <Card res = {elem} key= {elem.id}/> 
+              })
+              :
+              filteredGames(genreFilter(arrApi)).map((elem)=>{
+                return <Card res = {elem} key= {elem.id}/> 
+              }
+              )
+                
+                
+                
+                :filter==='DB' && actualGenre.length===0? 
+                busqueda.length >0?
+                searchFilter(filteredGames(arrDB)).map(elem=>{
+                  
+                  return <Card res = {elem} key= {elem.id}/> 
+                })
+                :
+                filteredGames(arrDB).map((elem)=>{
+                  return <Card res = {elem} key= {elem.id}/> 
+                }
+                )
+                
+                :
+
+                filter==='DB' && actualGenre.length>0?
+                
+                busqueda.length >0?
+                searchFilter(filteredGames(genreFilter(arrApi))).map(elem=>{
+                  
+                return <Card res = {elem} key= {elem.id}/> 
+                })
+                :
+                filteredGames(genreFilter(arrApi)).map((elem)=>{
+                  return <Card res = {elem} key= {elem.id}/> 
+                })  
+                
+                :null:null
+                
+              }
+                
+            
+            
+        
           </>
       }
   </div>
-  
+      {res === 'pending'?null:
+      <div className= {styles.DownBar}>
+        <div></div>
+        <div className={styles.MediumDownBar}>
+          <button  className={styles.pageButton}
+              onClick = {()=>{
+                onClickDown()
+              }}
+          
+          >
+          Página Anterior
+          </button>
+            
+
+
+          <button className={styles.pageButton} 
+          onClick={()=>{ 
+            onClickUp()
+          }}
+          >
+          Página Siguiente
+          </button>
+            
+        </div>
+      </div>
+      }
+      
+  </>
   
   )
-
-
+  
 }
+
+
     
 
-
-
-export default GameList
+function mapStateToProps(state){
+  return{
+      filter : state.filter,
+      genres: state.genres,
+      actualGenre:state.actualGenre,
+      busqueda: state.busqueda,
+      rating: state.rating
+  }
+}
+function mapDispatchToProps(dispatch){
+  return bindActionCreators(actionsCreators,dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(GameList)
 
 

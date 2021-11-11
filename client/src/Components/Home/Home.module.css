@@ -1,5 +1,7 @@
 
-
+NavBar{
+    display: none;
+}
 
 .Home{
     background-image: url(../../Images/Fondo3.jpg);
@@ -29,6 +31,7 @@
     font-size: 40px;
     padding-left: 10%;
     margin-bottom: 50px;
+    font-weight: 500;
 
 
 }
@@ -38,6 +41,7 @@
     font-size: 50px;
     padding-left: 10%;
     padding-right: 10%;
+    font-weight: 500;
 }
 
 
@@ -48,7 +52,7 @@
     color: white;
     letter-spacing: 4px;
     font-size: 45px;
-    border:solid #F0AE4F;
+    border:solid var(--principal-color);
     font-weight: 750;
     font-family: 'Lato', sans-serif;
     padding: 20px 40px;
@@ -56,8 +60,8 @@
     width:fit-content;
 }
 .Entry:hover{
-    background-color:#F0AE4F ;
-    box-shadow: 0px 0px 10px #F0AE4F, 0 0 40px #F0AE4F, 0 0 80px #F0AE4F;
+    background-color:var(--principal-color) ;
+    box-shadow: 0px 0px 10px var(--principal-color), 0 0 40px var(--principal-color), 0 0 80px var(--principal-color);
 }
 img{
     width: 50px;

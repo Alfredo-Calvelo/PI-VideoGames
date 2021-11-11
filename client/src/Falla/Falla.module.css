@@ -1,0 +1,9 @@
+.Falla{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  right: auto;
+  font-size: 100px;
+  color: white;
+  font-weight: 700;
+}
